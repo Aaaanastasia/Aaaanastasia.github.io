@@ -70,6 +70,31 @@ ul { list-style: none; }
   letter-spacing: 0.06em;
 }
 
+/* keyboard focus — drafting-pen outline, visible on any surface */
+:focus-visible {
+  outline: 1px dashed var(--peri);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* skip link — hidden until focused, then a proper blueprint chip */
+.skip-link {
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  transform: translateY(-64px);
+  background: var(--void);
+  border: 1px dashed var(--peri);
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform .2s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
 /* signature dashed containment box; border warms up slightly on hover */
 .dashed-box {
   border: var(--dash);
@@ -238,6 +263,7 @@ section[id] { scroll-margin-top: 72px; }
   max-width: 52ch;
 }
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero__rule { color: var(--peri); margin-top: 10px; }   /* the working rule, page one */
 .hero__coords {
   position: absolute;
   bottom: 20px; left: 0; right: 0;
@@ -330,6 +356,19 @@ section[id] { scroll-margin-top: 72px; }
   padding: 12px;
 }
 .case__body { color: var(--ash); font-size: 14px; }
+.case__body strong { color: var(--paper); font-weight: 600; }  /* scannable outcomes */
+/* ownership block — scope made explicit per case */
+.case__own {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-top: var(--dash);
+  padding-top: 12px;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+.case__own-k { color: var(--accent); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
 .tags span {
   border: 1px dashed var(--graphite);
@@ -389,6 +428,55 @@ section[id] { scroll-margin-top: 72px; }
 }
 .panel__fig svg { width: 100%; height: 100%; }
 .panel--flip .panel__fig { order: -1; border-left: none; border-right: var(--dash); }
+/* system link out (e.g. JobSeek portal) */
+.panel__link {
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  transition: color .15s ease;
+}
+.panel__link:hover { color: var(--paper); }
+
+/* ---------- operating system: process pipeline + principles ---------- */
+.pipeline {
+  background: var(--carbon);
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-bottom: var(--gap);
+}
+.pipeline__step {
+  border: 1px dashed var(--graphite);
+  border-radius: 100px;
+  padding: 6px 14px;
+  color: var(--ash);
+}
+.pipeline__step--end {
+  border-color: var(--peri);
+  color: var(--peri);
+}
+.pipeline__arrow { color: var(--graphite); font-size: 13px; }
+
+.principles {
+  background: var(--carbon);
+  counter-reset: none;
+}
+.principles__row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: baseline;
+  padding: 18px var(--pad);
+}
+.principles__row + .principles__row { border-top: var(--dash); }
+.principles__idx { color: var(--peri); }
+.principles__row p {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
 
 /* ---------- stack list ---------- */
 .stack { background: var(--carbon); }
@@ -443,6 +531,7 @@ section[id] { scroll-margin-top: 72px; }
   display: inline-block;
   min-width: 88px;
 }
+.track__arrow { color: var(--graphite); }
 
 /* portrait — matted in carbon inside the dashed frame, natural colors */
 .portrait {
@@ -492,6 +581,7 @@ section[id] { scroll-margin-top: 72px; }
 .contact__sub { color: var(--steel); max-width: 44ch; }
 /* recruiting facts (citizenship, languages) — must stay readable */
 .contact__meta { color: var(--steel); letter-spacing: 0.1em; }
+.contact__building { color: var(--amber); letter-spacing: 0.1em; }  /* present tense = signal */
 .contact__links { display: flex; gap: 28px; margin-top: 6px; }
 .contact__links a { color: var(--steel); transition: color .15s ease; }
 .contact__links a:hover { color: var(--paper); }

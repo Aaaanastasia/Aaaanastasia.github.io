@@ -13,10 +13,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anastasia Bogacheva — Analytics Engineer &amp; Builder</title>
-  <meta name="description" content="Analytics engineer with 6+ years across payments, risk and BI. BigQuery, dbt, Airflow, Power BI — and the self-built tools: JobSeek, LifeOS, Analyst Vault.">
+  <meta name="description" content="Anastasia Bogacheva — Analytics Engineer. I design analytical systems that turn data into decisions: BigQuery, dbt, Airflow, Power BI across payments, risk and BI. Systems: JobSeek, Analyst Vault, LifeOS.">
   <meta property="og:title" content="Anastasia Bogacheva — Analytics Engineer & Builder">
-  <meta property="og:description" content="Analyst by trade. Builder by habit. Six-plus years turning data into decisions across payments, risk and BI.">
+  <meta property="og:description" content="I design analytical systems that turn data into decisions. Six-plus years across payments, risk and BI.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aaaanastasia.github.io/">
+  <meta property="og:image" content="https://aaaanastasia.github.io/assets/portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <!-- structured data: who this site is about -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anastasia Bogacheva",
+    "jobTitle": "Analytics Engineer",
+    "description": "Analytics engineer designing analytical systems — BigQuery, dbt, Airflow, Power BI; payments, risk and compliance analytics.",
+    "url": "https://aaaanastasia.github.io/",
+    "image": "https://aaaanastasia.github.io/assets/portrait.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/aanastasia-bogacheva/",
+      "https://github.com/Aaaanastasia"
+    ],
+    "address": { "@type": "PostalAddress", "addressCountry": "IL" },
+    "knowsAbout": ["Analytics Engineering", "BigQuery", "dbt", "Airflow", "Power BI", "SQL", "Data Modeling", "Fraud Analytics", "Risk Analytics"]
+  }
+  </script>
   <!-- Favicon: periwinkle annotation square, inline so the site stays a single folder -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%237089ba' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
   <!-- Type: Archivo (variable, up to 900 — stands in for Raveo) + Geist Mono for micro-labels -->
@@ -26,6 +47,8 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#work">Skip to content</a>
 
   <!-- ============ NAV — transparent over hero, solid black on scroll ============ -->
   <header class="nav" id="nav">
@@ -60,14 +83,16 @@
         </span>
         <h1 class="hero__title">Analyst by trade.<br><span class="u-annotate">Builder</span> by&nbsp;habit.</h1>
         <p class="hero__sub">
-          Anastasia Bogacheva — six-plus years turning data into decisions
-          across payments, risk and BI. I model the warehouse, ship the
-          pipelines, and when the tooling doesn&rsquo;t exist, I build it myself.
+          Anastasia Bogacheva — analytics engineer. I design analytical
+          systems that turn data into decisions: six-plus years across
+          payments, risk and BI, and when the tooling doesn&rsquo;t exist,
+          I build it myself.
         </p>
         <div class="hero__cta">
           <a class="btn btn--outline btn--lg" href="#work">View the work<span class="btn__arrow" aria-hidden="true">↓</span></a>
           <a class="btn btn--ghost btn--lg" href="mailto:kneelisad@gmail.com">Get in touch</a>
         </div>
+        <p class="hero__rule mono">// IF IT HAPPENS TWICE, AUTOMATE IT.</p>
       </div>
       <!-- annotation coordinates, pure decoration; pairs with FIG. 04 in About -->
       <div class="hero__coords mono" aria-hidden="true">
@@ -105,7 +130,7 @@
 
       <div class="cases">
         <article class="case dashed-box reveal">
-          <span class="mono case__tag">CASE A — FRAUD &amp; RISK ANALYTICS</span>
+          <h3 class="mono case__tag">CASE A — FRAUD &amp; RISK ANALYTICS</h3>
           <!-- Schematic: outbound cap derived from trusted inbound volume -->
           <svg class="case__fig" viewBox="0 0 320 150" role="img" aria-label="Eligibility cap schematic">
             <g fill="none" stroke="currentColor" stroke-width="1">
@@ -127,18 +152,24 @@
             </g>
           </svg>
           <p class="case__body">
-            Eligibility analytics for outbound payments: caps derived from
-            trusted inbound activity, threshold simulations, and violation
-            reporting by country and segment — the Power BI views risk
-            leadership steers by, built on datasets too big to load twice.
+            Fraud exposure needed a policy answer: how much outbound volume
+            should a customer's trusted inbound activity actually earn?
+            I built the eligibility analytics — <strong>simulated four policy
+            thresholds</strong>, quantified the volume at risk, and shipped
+            <strong>the Power BI views risk leadership steers by</strong>,
+            with violation reporting by country and segment.
           </p>
+          <div class="case__own mono">
+            <span><span class="case__own-k">OWNED</span> — datasets · threshold simulations · reporting layer</span>
+            <span><span class="case__own-k">WITH</span> — risk &amp; compliance stakeholders</span>
+          </div>
           <div class="tags mono">
             <span>BIGQUERY</span><span>POWER BI</span><span>RISK</span>
           </div>
         </article>
 
         <article class="case dashed-box reveal accent-teal">
-          <span class="mono case__tag">CASE B — WAREHOUSE MIGRATION</span>
+          <h3 class="mono case__tag">CASE B — WAREHOUSE MIGRATION</h3>
           <!-- Schematic: two engines, same chain, one row-order divergence -->
           <svg class="case__fig" viewBox="0 0 320 150" role="img" aria-label="Migration parity schematic">
             <g fill="none" stroke="currentColor" stroke-width="1">
@@ -167,18 +198,24 @@
             </g>
           </svg>
           <p class="case__body">
-            A 14-model risk-scoring chain migrated from SQL Server to BigQuery
-            with row-level parity. The engines quietly disagreed; the culprit
-            was nondeterministic ROW_NUMBER ordering. Found it, pinned the
-            ordering, proved the numbers match.
+            A risk-scoring pipeline the business already trusted had to move
+            engines without the numbers moving. I migrated the
+            <strong>14-model chain from SQL Server to BigQuery</strong> and
+            validated it to <strong>row-level parity</strong> — including
+            root-causing a silent cross-engine mismatch to nondeterministic
+            ROW_NUMBER ordering, then pinning it and proving the match.
           </p>
+          <div class="case__own mono">
+            <span><span class="case__own-k">OWNED</span> — BigQuery implementation · parity validation · root-cause</span>
+            <span><span class="case__own-k">WITH</span> — data engineering</span>
+          </div>
           <div class="tags mono">
             <span>MSSQL → BIGQUERY</span><span>DBT</span><span>PARITY</span>
           </div>
         </article>
 
         <article class="case dashed-box reveal accent-amber">
-          <span class="mono case__tag">CASE C — PIPELINES AT SCALE</span>
+          <h3 class="mono case__tag">CASE C — PIPELINES AT SCALE</h3>
           <!-- Schematic: partitioned table, only two partitions scanned -->
           <svg class="case__fig" viewBox="0 0 320 150" role="img" aria-label="Partition pruning schematic">
             <g fill="none" stroke="currentColor" stroke-width="1">
@@ -203,12 +240,18 @@
             </g>
           </svg>
           <p class="case__body">
-            dbt staging plus Airflow orchestration for messaging-session data —
-            a 147-million-row, 18&nbsp;GB table partitioned so queries stopped
-            paying for it. Plus a warehouse cost hunt through
-            INFORMATION_SCHEMA that turned partitioning and clustering into
-            visibly smaller bills.
+            New messaging-session data had to become queryable without
+            becoming expensive. I built the dbt staging and Airflow
+            orchestration for a <strong>147-million-row, 18&nbsp;GB table</strong>,
+            partitioned so queries stopped paying for it — then ran a
+            warehouse cost hunt through INFORMATION_SCHEMA that turned
+            partitioning and clustering into <strong>visibly smaller bills</strong>,
+            with analyst workflows unchanged.
           </p>
+          <div class="case__own mono">
+            <span><span class="case__own-k">OWNED</span> — dbt staging models · Airflow DAG · partitioning &amp; cost analysis</span>
+            <span><span class="case__own-k">WITH</span> — data platform team</span>
+          </div>
           <div class="tags mono">
             <span>DBT</span><span>AIRFLOW</span><span>COST TUNING</span>
           </div>
@@ -242,6 +285,7 @@
             <li>Interview-prep engine — a briefing per callback</li>
             <li>Python + Obsidian, documentation-first</li>
           </ul>
+          <a class="panel__link mono" href="http://localhost:8765" target="_blank" rel="noopener">OPEN PORTAL ↗ — RUNS LOCAL</a>
         </div>
         <div class="panel__fig">
           <!-- Schematic: intake → score → telegram → prep pipeline -->
@@ -276,59 +320,10 @@
         </div>
       </article>
 
-      <!-- SYSTEM 02 — LifeOS (figure on the left on desktop) -->
-      <article class="panel panel--flip dashed-box reveal accent-amber">
+      <!-- SYSTEM 02 — Analyst Vault (figure on the left on desktop) -->
+      <article class="panel panel--flip dashed-box reveal accent-teal">
         <div class="panel__text">
-          <span class="mono panel__tag">SYSTEM 02 — DAILY DRIVER</span>
-          <h3 class="panel__title">LifeOS</h3>
-          <p class="panel__body">
-            A personal RPG that makes mental-health tracking playable. Real life
-            becomes quests, stats and streaks — tracked in Obsidian, rendered as
-            generated dashboards. Same architecture as JobSeek, pointed inward.
-          </p>
-          <ul class="checks">
-            <li>RPG mechanics laid over real habits</li>
-            <li>Core-plugins-only Obsidian architecture</li>
-            <li>Static generated dashboards — no plugin bloat</li>
-            <li>Built because the app version of this didn&rsquo;t exist</li>
-          </ul>
-        </div>
-        <div class="panel__fig">
-          <!-- Schematic: character sheet with stat bars -->
-          <svg viewBox="0 0 400 400" role="img" aria-label="LifeOS character sheet schematic">
-            <g fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="60" y="60" width="280" height="280"/>
-              <circle cx="120" cy="130" r="32"/>
-              <path d="M120 98 v-14 M120 162 v14 M88 130 h-14 M152 130 h14" stroke-dasharray="3 3"/>
-              <rect x="180" y="105" width="130" height="10"/>
-              <rect x="180" y="105" width="88"  height="10" fill="currentColor" fill-opacity="0.35"/>
-              <rect x="180" y="135" width="130" height="10"/>
-              <rect x="180" y="135" width="52"  height="10" fill="currentColor" fill-opacity="0.35"/>
-              <line x1="80"  y1="210" x2="320" y2="210" stroke-dasharray="4 3"/>
-              <rect x="80"  y="235" width="64" height="64"/>
-              <rect x="168" y="235" width="64" height="64"/>
-              <rect x="256" y="235" width="64" height="64"/>
-              <path d="M100 267 l10 12 l22 -24" stroke-width="1.5"/>
-              <path d="M188 267 l10 12 l22 -24" stroke-width="1.5"/>
-            </g>
-            <g class="mono-svg" fill="currentColor">
-              <text x="310" y="99"  text-anchor="end">HP</text>
-              <text x="310" y="129" text-anchor="end">XP</text>
-              <text x="80"  y="228">DAILY QUESTS</text>
-              <text x="60"  y="40">FIG. 02 — LIFEOS / SHEET</text>
-              <text x="286" y="272">+1</text>
-            </g>
-            <g fill="#ffffff" opacity="0.45">
-              <circle cx="330" cy="80" r="1"/><circle cx="90" cy="180" r="1"/><circle cx="350" cy="320" r="1"/>
-            </g>
-          </svg>
-        </div>
-      </article>
-
-      <!-- SYSTEM 03 — Analyst Vault -->
-      <article class="panel dashed-box reveal accent-teal">
-        <div class="panel__text">
-          <span class="mono panel__tag">SYSTEM 03 — IN USE RIGHT NOW</span>
+          <span class="mono panel__tag">SYSTEM 02 — IN USE RIGHT NOW</span>
           <h3 class="panel__title">Analyst Vault</h3>
           <p class="panel__body">
             An eight-skill analysis suite for Claude Code: business context →
@@ -372,7 +367,7 @@
               <text x="160" y="261">SQL</text>
               <text x="290" y="261">VIZ</text>
               <text x="142" y="354">REPORTING</text>
-              <text x="20"  y="36">FIG. 03 — VAULT / SEQUENCE</text>
+              <text x="20"  y="36">FIG. 02 — VAULT / SEQUENCE</text>
             </g>
             <g fill="#ffffff" opacity="0.45">
               <circle cx="350" cy="60" r="1"/><circle cx="50" cy="120" r="1"/><circle cx="360" cy="330" r="1"/>
@@ -380,42 +375,119 @@
           </svg>
         </div>
       </article>
+
+      <!-- SYSTEM 03 — LifeOS -->
+      <article class="panel dashed-box reveal accent-amber">
+        <div class="panel__text">
+          <span class="mono panel__tag">SYSTEM 03 — DAILY DRIVER</span>
+          <h3 class="panel__title">LifeOS</h3>
+          <p class="panel__body">
+            A personal tracking system with RPG mechanics — habits, energy and
+            streaks become quests and stats. Same pipeline architecture as
+            JobSeek, pointed inward: tracked in Obsidian, rendered as generated
+            dashboards.
+          </p>
+          <ul class="checks">
+            <li>Same architecture as JobSeek — proof the pattern reuses</li>
+            <li>RPG mechanics laid over real habits</li>
+            <li>Core-plugins-only Obsidian, static generated dashboards</li>
+            <li>Built because the app version of this didn&rsquo;t exist</li>
+          </ul>
+        </div>
+        <div class="panel__fig">
+          <!-- Schematic: character sheet with stat bars -->
+          <svg viewBox="0 0 400 400" role="img" aria-label="LifeOS character sheet schematic">
+            <g fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="60" y="60" width="280" height="280"/>
+              <circle cx="120" cy="130" r="32"/>
+              <path d="M120 98 v-14 M120 162 v14 M88 130 h-14 M152 130 h14" stroke-dasharray="3 3"/>
+              <rect x="180" y="105" width="130" height="10"/>
+              <rect x="180" y="105" width="88"  height="10" fill="currentColor" fill-opacity="0.35"/>
+              <rect x="180" y="135" width="130" height="10"/>
+              <rect x="180" y="135" width="52"  height="10" fill="currentColor" fill-opacity="0.35"/>
+              <line x1="80"  y1="210" x2="320" y2="210" stroke-dasharray="4 3"/>
+              <rect x="80"  y="235" width="64" height="64"/>
+              <rect x="168" y="235" width="64" height="64"/>
+              <rect x="256" y="235" width="64" height="64"/>
+              <path d="M100 267 l10 12 l22 -24" stroke-width="1.5"/>
+              <path d="M188 267 l10 12 l22 -24" stroke-width="1.5"/>
+            </g>
+            <g class="mono-svg" fill="currentColor">
+              <text x="310" y="99"  text-anchor="end">HP</text>
+              <text x="310" y="129" text-anchor="end">XP</text>
+              <text x="80"  y="228">DAILY QUESTS</text>
+              <text x="60"  y="40">FIG. 03 — LIFEOS / SHEET</text>
+              <text x="286" y="272">+1</text>
+            </g>
+            <g fill="#ffffff" opacity="0.45">
+              <circle cx="330" cy="80" r="1"/><circle cx="90" cy="180" r="1"/><circle cx="350" cy="320" r="1"/>
+            </g>
+          </svg>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ OPERATING SYSTEM — process + principles ============ -->
+    <section class="section" id="principles">
+      <div class="section__head reveal">
+        <span class="mono section__index">OPERATING SYSTEM — 03</span>
+        <h2 class="section__title">How I run analysis.</h2>
+      </div>
+      <div class="pipeline dashed-box reveal" role="img" aria-label="Working process from question to production">
+        <span class="pipeline__step mono">QUESTION</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">CLARIFY</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">EXPLORE</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">VALIDATE</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">MODEL</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">COMMUNICATE</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step pipeline__step--end mono">PRODUCTION</span>
+      </div>
+      <ol class="principles dashed-box reveal">
+        <li class="principles__row">
+          <span class="mono principles__idx">01</span>
+          <p>If a question is asked twice, it deserves a system.</p>
+        </li>
+        <li class="principles__row">
+          <span class="mono principles__idx">02</span>
+          <p>Reproducibility beats cleverness.</p>
+        </li>
+        <li class="principles__row">
+          <span class="mono principles__idx">03</span>
+          <p>Business context before SQL.</p>
+        </li>
+        <li class="principles__row">
+          <span class="mono principles__idx">04</span>
+          <p>Surface uncertainty — don&rsquo;t hide it.</p>
+        </li>
+        <li class="principles__row">
+          <span class="mono principles__idx">05</span>
+          <p>Don&rsquo;t automate a bad process.</p>
+        </li>
+      </ol>
     </section>
 
     <!-- ============ STACK — dense dashed-divider list, the real toolkit ============ -->
     <section class="section" id="stack">
       <div class="section__head reveal">
-        <span class="mono section__index">STACK — 03</span>
+        <span class="mono section__index">STACK — 04</span>
         <h2 class="section__title">The working&nbsp;surface.</h2>
       </div>
       <div class="stack dashed-box reveal">
         <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><ellipse cx="8" cy="3.5" rx="5.5" ry="2"/><path d="M2.5 3.5v9c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2v-9"/><path d="M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2"/></svg>WAREHOUSES</span>
-          <span class="stack__val">BigQuery · PostgreSQL · SQL Server · ClickHouse</span>
+          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><rect x="5.5" y="1.5" width="5" height="4"/><rect x="1.5" y="10.5" width="5" height="4"/><rect x="9.5" y="10.5" width="5" height="4"/><path d="M8 5.5V8M8 8H4v2.5M8 8h4v2.5" stroke-dasharray="2 1.6"/></svg>ANALYTICS ENGINEERING</span>
+          <span class="stack__val">BigQuery · dbt · Airflow · Data Vault 2.0 · star schema · semantic layers · Power BI</span>
         </div>
         <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M13.5 5.5H4l2.5-2.5M2.5 10.5H12L9.5 13"/></svg>TRANSFORM</span>
-          <span class="stack__val">dbt · Airflow · incremental models · Python pipelines</span>
+          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M13.5 5.5H4l2.5-2.5M2.5 10.5H12L9.5 13"/></svg>DATA ENGINEERING</span>
+          <span class="stack__val">Python · advanced SQL · incremental ELT · partitioning &amp; clustering · query tuning · automation</span>
         </div>
         <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><rect x="5.5" y="1.5" width="5" height="4"/><rect x="1.5" y="10.5" width="5" height="4"/><rect x="9.5" y="10.5" width="5" height="4"/><path d="M8 5.5V8M8 8H4v2.5M8 8h4v2.5" stroke-dasharray="2 1.6"/></svg>MODEL</span>
-          <span class="stack__val">Data Vault 2.0 · star schema · semantic layers · data marts</span>
+          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M2 14h12M4 14V9M8 14V4M12 14V6.5"/></svg>ANALYTICS</span>
+          <span class="stack__val">Metrics &amp; KPI design · experimentation · dashboard design · data validation · stakeholder communication</span>
         </div>
         <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M2.5 3.5l4 4.5-4 4.5M8.5 12.5h5"/></svg>SQL CRAFT</span>
-          <span class="stack__val">Window functions · recursive CTEs · partitioning · clustering · query tuning</span>
-        </div>
-        <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M2 14h12M4 14V9M8 14V4M12 14V6.5"/></svg>BI</span>
-          <span class="stack__val">Power BI · Tableau · Superset · DAX · executive reporting</span>
-        </div>
-        <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><path d="M5.5 2.5h-3v11h3M10.5 2.5h3v11h-3"/></svg>PYTHON</span>
-          <span class="stack__val">pandas · NumPy · requests · Jupyter · automation</span>
-        </div>
-        <div class="stack__row">
-          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5V4M8 12v2.5M1.5 8H4M12 8h2.5M3.4 3.4l1.8 1.8M10.8 10.8l1.8 1.8M12.6 3.4l-1.8 1.8M5.2 10.8l-1.8 1.8"/></svg>TOOLING</span>
-          <span class="stack__val">Google Cloud · Git / GitLab · Linux · DataGrip · Obsidian</span>
+          <span class="mono stack__key"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5V4M8 12v2.5M1.5 8H4M12 8h2.5M3.4 3.4l1.8 1.8M10.8 10.8l1.8 1.8M12.6 3.4l-1.8 1.8M5.2 10.8l-1.8 1.8"/></svg>FOUNDATIONS</span>
+          <span class="stack__val">PostgreSQL · SQL Server · ClickHouse · Tableau · Superset · Google Cloud · Git / GitLab · Linux · Obsidian</span>
         </div>
       </div>
     </section>
@@ -425,7 +497,7 @@
       <div class="about">
         <div class="about__main">
           <div class="section__head reveal">
-            <span class="mono section__index">ABOUT — 04</span>
+            <span class="mono section__index">ABOUT — 05</span>
             <h2 class="section__title">Behind the&nbsp;cursor.</h2>
           </div>
           <div class="about__text reveal">
@@ -437,18 +509,17 @@
               data engineering before I called it that.
             </p>
             <p>
-              My working rule is simple: if a question gets asked twice, it
-              becomes a query; if a process runs twice, it becomes a system.
-              I care about reproducible pipelines, honest numbers, and saying
-              &ldquo;the data can&rsquo;t tell us that&rdquo; out loud when
-              it&rsquo;s true.
+              I enjoy turning messy analytical questions into systems that
+              answer themselves. I care about reproducible pipelines, honest
+              numbers, and saying &ldquo;the data can&rsquo;t tell us
+              that&rdquo; out loud when it&rsquo;s true.
             </p>
             <div class="track dashed-box">
               <div class="track__row mono"><span class="track__key">NOW</span> PAYONEER — ANALYTICS ENGINEER · RISK, COMPLIANCE &amp; PAYMENT OPS</div>
               <div class="track__row mono"><span class="track__key">BEFORE</span> VTB BANK — AUTOMATION &amp; INTEGRATION EXPERT · DWH, ETL, CAPACITY</div>
+              <div class="track__row mono"><span class="track__key">PATH</span> INFRASTRUCTURE <span class="track__arrow">→</span> ANALYTICS <span class="track__arrow">→</span> ANALYTICS ENGINEERING <span class="track__arrow">→</span> AI-ASSISTED SYSTEMS</div>
               <div class="track__row mono"><span class="track__key">LANGUAGES</span> EN — WORK · RU — NATIVE · HE — IN PROGRESS</div>
             </div>
-            <p class="about__note mono">// IF IT HAPPENS TWICE, AUTOMATE IT.</p>
           </div>
         </div>
         <figure class="portrait dashed-box reveal">
@@ -472,6 +543,7 @@
         </p>
         <a class="btn btn--outline btn--lg" href="mailto:kneelisad@gmail.com">kneelisad@gmail.com</a>
         <p class="contact__meta mono">CENTRAL ISRAEL · CITIZEN — NO SPONSORSHIP NEEDED · INTERVIEWS IN EN / RU</p>
+        <p class="contact__building mono">NOW BUILDING — ANALYST VAULT · AN AI-NATIVE ANALYTICS WORKFLOW</p>
         <div class="contact__links mono">
           <a href="cv.html">CV&nbsp;↗</a>
           <a href="https://www.linkedin.com/in/aanastasia-bogacheva/" target="_blank" rel="noopener">LINKEDIN&nbsp;↗</a>
@@ -487,7 +559,7 @@
     <div class="footer__inner mono">
       <span>© <span id="year">2026</span> ANASTASIA BOGACHEVA</span>
       <span class="footer__mid">BUILT BY HAND — NO TEMPLATE</span>
-      <span>V2.1 — BLUEPRINT / COLOR</span>
+      <span>V2.2 — BLUEPRINT / COLOR</span>
     </div>
   </footer>
 
