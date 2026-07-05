@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Technical note 01 — the ROW_NUMBER parity hunt. The debugging story
+    behind Case B on the main page, with generic (employer-safe) SQL.
+    Reuses the cv-* document scaffolding; lives under notes/.
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ROW_NUMBER hunt — a warehouse-migration debugging note · Anastasia Bogacheva</title>
+  <meta name="description" content="How a 14-model risk pipeline produced different numbers on SQL Server and BigQuery: nondeterministic ROW_NUMBER ordering, how it was isolated, and the fix. By Anastasia Bogacheva.">
+  <meta property="og:title" content="The ROW_NUMBER hunt — engines that quietly disagree">
+  <meta property="og:description" content="A migration debugging note: same models, same data, different numbers — until the ordering was pinned.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%237089ba' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../index.html">
+        <span class="nav__logo-mark" aria-hidden="true"></span>
+        ANASTASIA&nbsp;BOGACHEVA
+      </a>
+      <nav class="nav__links" aria-label="Sections">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#systems">Systems</a>
+        <a href="../vault.html">Vault</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--ghost" href="../cv.html">CV</a>
+        <a class="btn btn--outline" href="mailto:kneelisad@gmail.com">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="cv-wrap" id="top">
+
+    <section class="cv-head dashed-box reveal">
+      <span class="chip">
+        <span class="chip__dot" aria-hidden="true"></span>
+        TECHNICAL NOTE — 01 · WAREHOUSE MIGRATION
+      </span>
+      <h1 class="cv-name">The engines quietly disagreed.</h1>
+      <p class="cv-role">A 14-model risk pipeline, two databases, and one nondeterministic line.</p>
+      <p class="cv-tagline mono">SQL SERVER → BIGQUERY · ROW-LEVEL PARITY · ROOT-CAUSE</p>
+      <div class="cv-contact mono">
+        <span>CONTEXT — REAL MIGRATION, DETAILS GENERALIZED</span>
+        <span>READING TIME — 4 MIN</span>
+      </div>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">00 — THE SETUP</span>
+      <p class="cv-text">
+        A scoring pipeline the business already trusted — fourteen chained
+        models, each feeding the next, ending in a risk score that people act
+        on — had to move from SQL Server to BigQuery. The success criterion
+        was strict on purpose: <strong style="color:var(--paper);">row-level parity</strong>. Same
+        inputs, same outputs, to the row. Not &ldquo;close.&rdquo; A migration
+        that changes the numbers isn&rsquo;t a migration; it&rsquo;s a new,
+        unvalidated model wearing the old one&rsquo;s name.
+      </p>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">01 — THE SYMPTOM</span>
+      <p class="cv-text">
+        Both pipelines ran clean. No errors, no nulls where they
+        shouldn&rsquo;t be, aggregate counts matching. But the final scores
+        disagreed for a small, unstable subset of accounts — and worse, the
+        <em>set of disagreeing rows changed between runs</em> on the same
+        frozen input. That last detail is the tell. Deterministic logic
+        doesn&rsquo;t produce a different diff on identical data; something in
+        the chain was making an arbitrary choice, and each engine — sometimes
+        each <em>run</em> — was choosing differently.
+      </p>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">02 — THE HUNT</span>
+      <p class="cv-text" style="margin-bottom:14px;">
+        Fourteen models is too many to eyeball, so the hunt was a bisection:
+        materialize both engines&rsquo; outputs per model, diff each layer, and
+        find the first one where the results diverge. The diff tool is the
+        plainest SQL there is:
+      </p>
+      <div class="codeblock">
+        <span class="codeblock__label mono">PARITY CHECK — RUN IN BOTH DIRECTIONS, EXPECT ZERO ROWS</span>
+        <pre>SELECT * FROM model_07_engine_a
+<span class="k">EXCEPT DISTINCT</span>
+SELECT * FROM model_07_engine_b;
+<span class="c">-- …and the mirror query. Zero rows both ways = this layer is clean.</span></pre>
+      </div>
+      <p class="cv-text" style="margin-top:14px;">
+        Layers one through six: identical. Layer seven: sixty-odd rows of
+        drift, growing downstream as later models amplified the difference.
+        Everything below layer seven was innocent — the bug had one address.
+      </p>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">03 — THE ROOT CAUSE</span>
+      <p class="cv-text" style="margin-bottom:14px;">
+        Layer seven deduplicated events per account: keep the &ldquo;first&rdquo;
+        record per account per day. The original code:
+      </p>
+      <div class="codeblock">
+        <span class="codeblock__label mono">BEFORE — LOOKS INNOCENT, ISN&rsquo;T</span>
+        <pre>ROW_NUMBER() OVER (
+  PARTITION BY account_id, event_date
+  ORDER BY event_timestamp        <span class="bad">-- ties exist. order among ties: engine&rsquo;s choice</span>
+) AS rn
+<span class="c">-- downstream: WHERE rn = 1</span></pre>
+      </div>
+      <p class="cv-text" style="margin-top:14px;">
+        Multiple events can share a timestamp — batch loads land that way
+        constantly. The SQL standard says nothing about which tied row gets
+        <code style="font-family:var(--mono);font-size:13px;color:var(--paper);">rn = 1</code>;
+        SQL Server picked one by storage order, BigQuery by shard order,
+        and neither promises stability run-to-run.
+        <strong style="color:var(--paper);">Both engines were correct. The query was
+        underspecified.</strong> It had been silently arbitrary for years —
+        the old system just made the same arbitrary choice consistently
+        enough that nobody saw it.
+      </p>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">04 — THE FIX</span>
+      <div class="codeblock">
+        <span class="codeblock__label mono">AFTER — DETERMINISTIC ON ANY ENGINE</span>
+        <pre>ROW_NUMBER() OVER (
+  PARTITION BY account_id, event_date
+  ORDER BY event_timestamp,
+           source_system,
+           <span class="k">event_id</span>            <span class="c">-- unique key = total order = one possible answer</span>
+) AS rn</pre>
+      </div>
+      <p class="cv-text" style="margin-top:14px;">
+        One line: extend the ordering until it reaches a unique key, so there
+        are no ties left for the engine to break. Re-ran the full chain on
+        both engines: <strong style="color:var(--paper);">zero-row diffs at every layer, stable
+        across reruns.</strong> Parity proven, migration signed off, and the
+        fix was backported to the legacy side so the old system stopped being
+        secretly lucky.
+      </p>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">05 — WHAT IT TAUGHT ME</span>
+      <ul class="checks" style="gap:10px;">
+        <li>Every ORDER BY inside a window function must reach a unique key — determinism is a contract, not a default.</li>
+        <li>&ldquo;Same code, different engine&rdquo; is a myth: migrations validate behavior, not syntax.</li>
+        <li>EXCEPT-based layer bisection turns &ldquo;the numbers are wrong somewhere&rdquo; into &ldquo;the bug lives in model seven.&rdquo;</li>
+        <li>An unstable diff on frozen input means nondeterminism — stop reading logic, start hunting arbitrary choices.</li>
+      </ul>
+    </section>
+
+    <section class="cv-download dashed-box reveal">
+      <div>
+        <p class="cv-download__title">More where this came from.</p>
+        <p class="mono cv-download__hint">CASE B ON THE MAIN PAGE IS THIS STORY, COMPRESSED</p>
+      </div>
+      <div class="cv-download__actions">
+        <a class="btn btn--outline" href="../vault.html">The Analyst Vault</a>
+        <a class="btn btn--ghost" href="../index.html#work">← Back to work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner mono">
+      <span>© <span id="year">2026</span> ANASTASIA BOGACHEVA</span>
+      <span class="footer__mid">DOC. REF — NOTES / 01</span>
+      <span><a href="../index.html">← BACK TO SITE</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

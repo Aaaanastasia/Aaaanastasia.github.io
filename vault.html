@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Analyst Vault — flagship system page. Deep dive into the AI-native
+    analytics workflow: architecture, the eight skills, operating rules,
+    how a request flows, direction. Same blueprint design system; reuses
+    the cv-* document-page scaffolding from styles.css.
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyst Vault — an AI-native analytics workflow · Anastasia Bogacheva</title>
+  <meta name="description" content="Analyst Vault: eight analysis skills and an orchestrator for Claude Code — business context, exploration, methods, statistics, SQL, visualization, reporting. Built by Anastasia Bogacheva.">
+  <meta property="og:title" content="Analyst Vault — an AI-native analytics workflow">
+  <meta property="og:description" content="Eight skills, one orchestrator, and operating rules that make every analysis reproducible. The flagship system of aaaanastasia.github.io.">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%237089ba' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html">
+        <span class="nav__logo-mark" aria-hidden="true"></span>
+        ANASTASIA&nbsp;BOGACHEVA
+      </a>
+      <nav class="nav__links" aria-label="Sections">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#systems">Systems</a>
+        <a href="index.html#stack">Stack</a>
+        <a href="index.html#about">About</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--ghost" href="cv.html">CV</a>
+        <a class="btn btn--outline" href="mailto:kneelisad@gmail.com">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="cv-wrap" id="top">
+
+    <!-- ============ HEADER ============ -->
+    <section class="cv-head dashed-box reveal accent-teal" style="--accent: var(--teal);">
+      <span class="chip">
+        <span class="chip__dot" aria-hidden="true"></span>
+        FLAGSHIP SYSTEM — IN USE DAILY · UNDER ACTIVE BUILD
+      </span>
+      <h1 class="cv-name">Analyst Vault.</h1>
+      <p class="cv-role">An AI-native analytics workflow — eight skills, one orchestrator.</p>
+      <p class="cv-tagline mono" style="color: var(--teal);">CLAUDE CODE · MARKDOWN-FIRST · REPRODUCIBLE BY RULE</p>
+      <div class="cv-contact mono">
+        <span>STATUS — DAILY DRIVER</span>
+        <span>BUILT — 2026</span>
+        <span>THIS SITE WAS MADE INSIDE IT</span>
+      </div>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">00 — WHY IT EXISTS</span>
+      <p class="cv-text">
+        Analysis quality is mostly process quality: the questions you ask before
+        writing code, the checks you run before trusting a number, the honesty
+        of the final writeup. AI assistants are powerful but unstructured —
+        they'll happily skip straight to SQL. The Vault encodes the process
+        itself, so every analysis follows the same spine: context before
+        queries, validation before claims, uncertainty stated out loud.
+      </p>
+    </section>
+
+    <!-- ============ ARCHITECTURE ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">01 — ARCHITECTURE</span>
+      <div class="codeblock" style="padding: 20px;">
+        <svg viewBox="0 0 800 470" role="img" aria-label="Analyst Vault architecture: global rules over an orchestrator sequencing eight skills into a deliverable" style="width:100%;height:auto;color:var(--teal);" fill="none" stroke="currentColor" stroke-width="1">
+          <!-- user question -->
+          <rect x="300" y="14" width="200" height="36"/>
+          <!-- global rules band -->
+          <rect x="40" y="78" width="720" height="34" stroke-dasharray="5 4"/>
+          <!-- orchestrator -->
+          <rect x="290" y="140" width="220" height="40"/>
+          <!-- phase columns -->
+          <rect x="40"  y="228" width="200" height="42"/>
+          <rect x="300" y="228" width="200" height="42"/>
+          <rect x="300" y="282" width="200" height="42"/>
+          <rect x="300" y="336" width="200" height="42"/>
+          <rect x="560" y="228" width="200" height="42"/>
+          <rect x="560" y="282" width="200" height="42"/>
+          <!-- knowledge store -->
+          <rect x="40" y="312" width="200" height="66" stroke-dasharray="5 4"/>
+          <!-- deliverable -->
+          <rect x="300" y="416" width="200" height="40"/>
+          <!-- connectors -->
+          <path d="M400 50 V78 M400 112 V140" stroke-dasharray="4 3"/>
+          <path d="M400 180 V204 H140 V228" stroke-dasharray="4 3"/>
+          <path d="M400 180 V228" stroke-dasharray="4 3"/>
+          <path d="M400 180 V204 H660 V228" stroke-dasharray="4 3"/>
+          <path d="M140 270 V312" stroke-dasharray="4 3"/>
+          <path d="M400 270 V282 M400 324 V336" stroke-dasharray="4 3"/>
+          <path d="M660 270 V282" stroke-dasharray="4 3"/>
+          <path d="M660 324 V396 H400 V416" stroke-dasharray="4 3"/>
+          <path d="M240 345 H278 V378 H400 V416" stroke-dasharray="2 4"/>
+          <circle cx="400" cy="140" r="2.5" fill="currentColor"/>
+          <circle cx="400" cy="416" r="2.5" fill="currentColor"/>
+          <!-- labels -->
+          <g class="mono-svg" fill="currentColor" stroke="none">
+            <text x="330" y="36">BUSINESS QUESTION</text>
+            <text x="52"  y="99">GLOBAL RULES — CLAUDE.MD: DOCUMENT EVERYTHING · REPRODUCIBLE BY DEFAULT · SURFACE UNCERTAINTY · SCOPE DISCIPLINE</text>
+            <text x="302" y="164">ORCHESTRATOR — ANALYSIS-WORKFLOW</text>
+            <text x="52"  y="252">CONTEXT — BUSINESS FRAMING</text>
+            <text x="312" y="252">EXPLORE — PROFILE &amp; CLEAN</text>
+            <text x="312" y="306">METHODS — SEGMENT &amp; DERIVE</text>
+            <text x="312" y="360">STATISTICS — VALIDATE</text>
+            <text x="572" y="252">SQL — QUERY CRAFT</text>
+            <text x="572" y="306">VIZ + REPORT — DELIVER</text>
+            <text x="52"  y="334">SKILLS/ — LEARNED KNOWLEDGE</text>
+            <text x="52"  y="350">PRINCIPLES · ANTI-PATTERNS ·</text>
+            <text x="52"  y="366">PLAYBOOKS (GROWS PER PROJECT)</text>
+            <text x="330" y="440">DELIVERABLE — V1.0</text>
+            <text x="40"  y="466">FIG. V-01 — VAULT / FULL SCHEMATIC · EVERY ARROW IS A PHASE GATE</text>
+          </g>
+          <g fill="#ffffff" opacity="0.4" stroke="none">
+            <circle cx="270" cy="120" r="1"/><circle cx="740" cy="200" r="1"/><circle cx="80" cy="420" r="1"/><circle cx="520" cy="60" r="1"/>
+          </g>
+        </svg>
+      </div>
+      <p class="cv-text" style="margin-top:14px;">
+        Three layers. <strong style="color:var(--paper);">Global rules</strong> (a CLAUDE.md read at
+        every session start) bind all output — documentation, reproducibility,
+        honesty about limits. The <strong style="color:var(--paper);">orchestrator</strong> decides which
+        phase comes next and carries context between them. The
+        <strong style="color:var(--paper);">skills</strong> hold the craft: each one is a written playbook
+        with methods, anti-patterns and mandatory sub-steps — the kind of
+        discipline a good senior would enforce in review, encoded so it happens
+        every time.
+      </p>
+    </section>
+
+    <!-- ============ THE EIGHT SKILLS ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">02 — THE EIGHT SKILLS</span>
+      <div class="stack cv-stack">
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">ORCHESTRATION</span>
+          <span class="stack__val"><strong style="color:var(--paper);">analysis-workflow</strong> — sequences the skills, manages phase transitions, builds shared context progressively.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">CONTEXT</span>
+          <span class="stack__val"><strong style="color:var(--paper);">business-context-exploration</strong> — goals, success metrics, hypotheses and data requirements before any technical work.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">TECHNICAL</span>
+          <span class="stack__val"><strong style="color:var(--paper);">data-exploration</strong> — profile structure and types, find quality issues and anomalies; cleaning is a built-in sub-phase, not an afterthought.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">TECHNICAL</span>
+          <span class="stack__val"><strong style="color:var(--paper);">analytical-methods</strong> — segmentation, aggregation, feature creation: clean data into actionable findings.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">TECHNICAL</span>
+          <span class="stack__val"><strong style="color:var(--paper);">statistical-analysis</strong> — hypothesis tests, significance, regression; invoked whenever a finding needs mathematical backing.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">TECHNICAL</span>
+          <span class="stack__val"><strong style="color:var(--paper);">sql-query-writing</strong> — query construction and optimization across DuckDB, PostgreSQL, BigQuery and Snowflake dialects.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">OUTPUT</span>
+          <span class="stack__val"><strong style="color:var(--paper);">data-viz-dashboarding</strong> — chart selection and dashboard design, with a mandatory prototyping step before any code is written.</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key" style="color:var(--teal);">OUTPUT</span>
+          <span class="stack__val"><strong style="color:var(--paper);">reporting-narrative</strong> — written findings and presentation structure, tuned to the audience and format.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OPERATING RULES ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">03 — RULES THE VAULT ENFORCES</span>
+      <ul class="checks" style="--accent: var(--teal); gap: 10px;">
+        <li>Every code block documents purpose, expected input, expected output.</li>
+        <li>Reproducible by default — explicit transformations, fixed random seeds, no absolute paths.</li>
+        <li>Uncertain findings are labeled uncertain; borderline statistics get the nuance, not a clean pass/fail.</li>
+        <li>Macro requests get context questions first; micro requests don&rsquo;t get re-interrogated.</li>
+        <li>Outputs are versioned (report_v1.1, dashboard_v2) — revisits iterate, never restart.</li>
+        <li>Scope expansion is flagged before it happens: extend, defer, or stay focused.</li>
+      </ul>
+    </section>
+
+    <!-- ============ A REQUEST FLOWING THROUGH ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">04 — A REQUEST, FLOWING THROUGH</span>
+      <p class="cv-text" style="margin-bottom:14px;">
+        Take &ldquo;why did signups drop in June?&rdquo; The orchestrator refuses to
+        jump to SQL. It runs the spine:
+      </p>
+      <div class="pipeline dashed-box" style="border:none; padding-left:0; padding-right:0; background:transparent;">
+        <span class="pipeline__step mono">FRAME: METRIC, WINDOW, HYPOTHESES</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">PROFILE THE DATA</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">SEGMENT THE DROP</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step mono">TEST: REAL OR NOISE?</span><span class="pipeline__arrow" aria-hidden="true">→</span>
+        <span class="pipeline__step pipeline__step--end mono" style="border-color:var(--teal); color:var(--teal);">REPORT WITH CONFIDENCE LEVELS</span>
+      </div>
+      <p class="cv-text" style="margin-top:14px;">
+        Each arrow is a gate: the statistics skill won&rsquo;t bless a segment
+        difference without a test; the reporting skill won&rsquo;t write
+        &ldquo;signups dropped because&rdquo; when the honest sentence is
+        &ldquo;the drop concentrates in paid channels — cause unconfirmed.&rdquo;
+        The proof it works: <strong style="color:var(--paper);">this entire site — design, copy,
+        generated art, CV pipeline — was produced inside the Vault.</strong>
+      </p>
+    </section>
+
+    <!-- ============ FAMILY + DIRECTION ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">05 — SYSTEM FAMILY &amp; DIRECTION</span>
+      <p class="cv-text">
+        The Vault shares an architecture family with
+        <strong style="color:var(--paper);">JobSeek</strong> (job-search intelligence) and
+        <strong style="color:var(--paper);">LifeOS</strong> (personal tracking): markdown-first storage,
+        file-based knowledge that accumulates, generated dashboards, and a
+        strict separation between what humans edit and what machines write.
+      </p>
+      <div class="track dashed-box" style="margin-top:16px;">
+        <div class="track__row mono"><span class="track__key" style="color:var(--teal);">NOW</span> DAILY USE ON REAL ANALYSES — EVERY PROJECT FEEDS SKILLS/ WITH NEW PLAYBOOKS</div>
+        <div class="track__row mono"><span class="track__key" style="color:var(--teal);">NEXT</span> EXPERIMENT-DESIGN DEEPENING — A/B PLAYBOOKS, POWER CHECKS, READOUT TEMPLATES</div>
+        <div class="track__row mono"><span class="track__key" style="color:var(--teal);">REVIEW</span> PUBLIC RELEASE — METHODOLOGY ONLY, AFTER A FULL PRIVACY PASS</div>
+      </div>
+      <p class="mono section__footnote" style="margin-top:14px;">DIRECTION, NOT PROMISES — DATED WHEN SHIPPED.</p>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cv-download dashed-box reveal">
+      <div>
+        <p class="cv-download__title">Want the war stories behind it?</p>
+        <p class="mono cv-download__hint">ONE TECHNICAL NOTE IS UP — MORE AS THEY&rsquo;RE WRITTEN</p>
+      </div>
+      <div class="cv-download__actions">
+        <a class="btn btn--outline" href="notes/row-number-parity.html">Read: the ROW_NUMBER hunt</a>
+        <a class="btn btn--ghost" href="index.html#systems">← All systems</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner mono">
+      <span>© <span id="year">2026</span> ANASTASIA BOGACHEVA</span>
+      <span class="footer__mid">DOC. REF — VAULT / FLAGSHIP</span>
+      <span><a href="index.html">← BACK TO SITE</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

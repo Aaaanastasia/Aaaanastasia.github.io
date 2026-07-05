@@ -582,6 +582,8 @@ section[id] { scroll-margin-top: 72px; }
 /* recruiting facts (citizenship, languages) — must stay readable */
 .contact__meta { color: var(--steel); letter-spacing: 0.1em; }
 .contact__building { color: var(--amber); letter-spacing: 0.1em; }  /* present tense = signal */
+.contact__building a { transition: color .15s ease; }
+.contact__building a:hover { color: var(--paper); }
 .contact__links { display: flex; gap: 28px; margin-top: 6px; }
 .contact__links a { color: var(--steel); transition: color .15s ease; }
 .contact__links a:hover { color: var(--paper); }
@@ -740,6 +742,42 @@ section[id] { scroll-margin-top: 72px; }
   .cv-head, .cv-section { padding: var(--pad); }
   .hide-sm { display: none; }       /* nav "Download PDF" → "PDF" */
 }
+
+/* ---------- doc-page extras: vault flagship + technical notes ---------- */
+/* code blocks — schematic listings, not syntax-highlight christmas trees */
+.codeblock {
+  background: var(--void);
+  border: 1px dashed #2e2e2e;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 4px 0;
+}
+.codeblock pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ash);
+  letter-spacing: 0.01em;
+}
+.codeblock .k { color: var(--paper); }          /* emphasized token   */
+.codeblock .c { color: var(--peri); }           /* annotation comment */
+.codeblock .bad { color: var(--rose, #c67d90); }
+.codeblock__label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--steel);
+}
+
+/* in-card links out to notes/pages */
+.case__link {
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  transition: color .15s ease;
+}
+.case__link:hover { color: var(--paper); }
+
+/* skill rows on the vault page get a phase tag column */
+.skill-phase { color: var(--steel); min-width: 92px; display: inline-block; }
 
 /* ---------- print: this page doubles as a paper CV ---------- */
 @media print {
