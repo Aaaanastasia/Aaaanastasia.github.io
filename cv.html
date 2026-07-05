@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    CV page — Anastasia Bogacheva. Mirrors the .docx CV content 1:1 in the
+    site's Index blueprint style. Downloads: assets/Anastasia_Bogacheva_CV.pdf
+    (generated from the .docx via Word) and the .docx itself.
+    Print-styled: printing this page yields a clean black-on-white CV.
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Anastasia Bogacheva</title>
+  <meta name="description" content="CV of Anastasia Bogacheva — Data Analyst / Analytics Engineer. SQL, BigQuery, Power BI, Python; compliance, risk and payment-operations analytics.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%237089ba' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ NAV — same chrome as index, actions swap to downloads ============ -->
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html">
+        <span class="nav__logo-mark" aria-hidden="true"></span>
+        ANASTASIA&nbsp;BOGACHEVA
+      </a>
+      <nav class="nav__links" aria-label="Sections">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#systems">Systems</a>
+        <a href="index.html#stack">Stack</a>
+        <a href="index.html#about">About</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--ghost" href="assets/Anastasia_Bogacheva_CV.docx" download>DOCX</a>
+        <a class="btn btn--outline" href="assets/Anastasia_Bogacheva_CV.pdf" download><span class="hide-sm">Download&nbsp;</span>PDF</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="cv-wrap" id="top">
+
+    <!-- ============ CV HEADER ============ -->
+    <section class="cv-head dashed-box reveal">
+      <span class="chip">
+        <span class="chip__dot" aria-hidden="true"></span>
+        DOCUMENT — CV / RESUME
+      </span>
+      <h1 class="cv-name">Anastasia Bogacheva</h1>
+      <p class="cv-role">Data Analyst / Analytics Engineer</p>
+      <p class="cv-tagline mono">SQL · BIGQUERY · POWER BI · PYTHON — DATA MODELING, BI &amp; OPERATIONAL ANALYTICS</p>
+      <div class="cv-contact mono">
+        <span>ISRAEL / REMOTE</span>
+        <a href="tel:+972557732875">+972 55 77 32 875</a>
+        <a href="mailto:kneelisad@gmail.com">KNEELISAD@GMAIL.COM</a>
+        <a href="https://www.linkedin.com/in/aanastasia-bogacheva/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+      </div>
+    </section>
+
+    <!-- ============ SUMMARY ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">00 — PROFESSIONAL SUMMARY</span>
+      <p class="cv-text">
+        Data Analyst and Analytics Engineer with 6+ years of experience turning
+        large-scale data into operational decisions. Currently supporting
+        Compliance, Fraud, Risk, and Payment Operations at Payoneer through
+        BigQuery, complex SQL, Python, and Power BI — designing data marts,
+        reporting frameworks, and SLA measurement logic. Earlier experience in
+        data engineering (ETL pipelines, data migration, Spark) means I
+        understand the full path from source systems to insight. Known for
+        translating complex business processes into scalable data products and
+        finding the business-logic and data-quality issues others miss.
+      </p>
+    </section>
+
+    <!-- ============ CORE SKILLS — reuses the stack-row pattern ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">01 — CORE SKILLS</span>
+      <div class="stack cv-stack">
+        <div class="stack__row">
+          <span class="mono stack__key">DATA &amp; AE</span>
+          <span class="stack__val">SQL (advanced) · Google BigQuery · PostgreSQL · ClickHouse · Python · ETL/ELT · Apache Spark · Data Modeling · Data Warehousing · Power Query</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key">BI</span>
+          <span class="stack__val">Power BI · Tableau · Superset · Excel (advanced) · VBA</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key">DOMAIN</span>
+          <span class="stack__val">Compliance Analytics · Risk Analytics · Fraud Analytics · KYC / AML · Payment Operations · SLA &amp; KPI Development</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key">WAYS</span>
+          <span class="stack__val">Jira · Confluence · Git · Stakeholder Management</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">02 — PROFESSIONAL EXPERIENCE</span>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Analyst — Payoneer</h2>
+        <p class="cv-entry__meta mono">ISRAEL · ANALYTICS FOR COMPLIANCE, RISK, FRAUD &amp; COMPLIANCE REVIEW · GLOBAL PAYMENTS</p>
+        <ul class="cv-bullets">
+          <li>Designed and delivered enterprise Power BI dashboards used by Compliance Operations leadership to monitor SLA adherence, queue performance, case volumes, payment investigations, and operational efficiency across global teams.</li>
+          <li>Designed analytical datasets and data marts in Google BigQuery, integrating CRM, payments, and compliance systems (ORN, SmartQ) to support both operational reporting and ad-hoc investigations.</li>
+          <li>Developed complex SQL transformations powering operational analytics, SLA measurement, payment investigations, and risk-monitoring use cases across large-scale datasets.</li>
+          <li>Rebuilt legacy SLA calculation logic — correcting interval-calculation defects, queue-transition handling, and payment-to-case linkage — measurably improving reporting accuracy and stakeholder trust.</li>
+          <li>Led analytical investigations across KYC, AML, fraud, and payment-operations workflows, including root-cause analysis of SLA breaches and queue bottlenecks.</li>
+          <li>Partnered with Compliance, Fraud, Product, and Data stakeholders to translate business requirements into reporting frameworks; presented findings and methodology changes to leadership.</li>
+        </ul>
+      </article>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Engineer — VTB</h2>
+        <p class="cv-entry__meta mono">MOSCOW · AUTOMATION, INTEGRATION &amp; CAPACITY MANAGEMENT</p>
+        <ul class="cv-bullets">
+          <li>Migrated legacy data-engineering codebase from Windows to Linux, improving system performance and scalability by ~30%.</li>
+          <li>Built and maintained ETL pipelines in Python and SQL, streamlining data collection, storage, and analysis across large datasets.</li>
+          <li>Designed automated document workflows in Jira and Confluence, cutting project-management overhead by ~20%.</li>
+          <li>Developed Power BI and Superset dashboards for capacity management, improving operational decision-making.</li>
+          <li>Worked with PostgreSQL, Apache Spark, and Python for large-scale data processing.</li>
+        </ul>
+      </article>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Analyst — VTB</h2>
+        <p class="cv-entry__meta mono">MOSCOW</p>
+        <ul class="cv-bullets">
+          <li>Built complex calculations and dynamic dashboards in Excel using advanced formulas and VBA, automating recurring reporting processes.</li>
+          <li>Created clear visualizations and presentations that translated analysis into decisions for technical and non-technical stakeholders.</li>
+        </ul>
+      </article>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Manager — Moscow Industrial Bank</h2>
+        <p class="cv-entry__meta mono">MOSCOW</p>
+        <ul class="cv-bullets">
+          <li>Collected, analyzed, and automated branch-efficiency reports for legal-entity clients using Excel, Power Query, and VBA.</li>
+          <li>Prepared presentations and promotional materials for senior management and external stakeholders.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ============ SELECTED PROJECTS ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">03 — SELECTED PROJECTS</span>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Compliance SLA Analytics &amp; Measurement — Payoneer</h2>
+        <ul class="cv-bullets">
+          <li>Rebuilt SLA measurement logic for Compliance Operations, correcting interval-calculation defects and queue-transition handling that had been skewing reporting.</li>
+          <li>Delivered the Power BI reporting layer leadership uses to track SLA adherence and queue performance, improving operational visibility and decision-making.</li>
+        </ul>
+      </article>
+
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Payment Investigation Analytics — Payoneer</h2>
+        <ul class="cv-bullets">
+          <li>Developed payment-to-case linkage logic across compliance and payment systems in BigQuery, enabling accurate reconciliation between source systems and operational dashboards.</li>
+          <li>Supported fraud and compliance investigations through reusable analytical datasets, reducing manual effort for recurring investigation workflows.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ============ EDUCATION + CERTS ============ -->
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">04 — EDUCATION</span>
+      <article class="cv-entry">
+        <h2 class="cv-entry__role">Master&rsquo;s Degree, Marketing — Plekhanov Russian University of Economics</h2>
+        <p class="cv-entry__meta mono">2009 – 2014</p>
+      </article>
+    </section>
+
+    <section class="cv-section dashed-box reveal">
+      <span class="mono cv-section__label">05 — CERTIFICATIONS &amp; LANGUAGES</span>
+      <div class="stack cv-stack">
+        <div class="stack__row">
+          <span class="mono stack__key">CERTS</span>
+          <span class="stack__val">EF SET English Certificate — 75/100 (C2 Proficient)</span>
+        </div>
+        <div class="stack__row">
+          <span class="mono stack__key">LANGUAGES</span>
+          <span class="stack__val">English (Professional Working) · Russian (Native) · Hebrew (Elementary)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DOWNLOAD STRIP ============ -->
+    <section class="cv-download dashed-box reveal">
+      <div>
+        <p class="cv-download__title">Need a copy?</p>
+        <p class="mono cv-download__hint">PDF FOR RECRUITERS · DOCX FOR ATS · OR PRINT THIS PAGE — IT&rsquo;S PRINT-STYLED</p>
+      </div>
+      <div class="cv-download__actions">
+        <a class="btn btn--outline" href="assets/Anastasia_Bogacheva_CV.pdf" download>Download PDF</a>
+        <a class="btn btn--ghost" href="assets/Anastasia_Bogacheva_CV.docx" download>DOCX</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner mono">
+      <span>© <span id="year">2026</span> ANASTASIA BOGACHEVA</span>
+      <span class="footer__mid">DOC. REF — CV / BLUEPRINT</span>
+      <span><a href="index.html">← BACK TO SITE</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
