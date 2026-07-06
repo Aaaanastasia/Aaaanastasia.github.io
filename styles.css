@@ -199,9 +199,31 @@ section[id] { scroll-margin-top: 72px; }
   letter-spacing: 0.14em;
 }
 .nav__logo-mark {
-  width: 12px; height: 12px;
-  border: 1px dashed var(--peri);   /* tiny annotation square = logo */
+  width: 20px; height: 20px;
+  border: 1px dashed var(--peri);   /* AB drafting-mark logo */
+  display: grid;
+  place-items: center;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 900;
+  color: var(--paper);
+  letter-spacing: 0;
 }
+
+/* portal screenshots on system tour pages */
+.shot-fig {
+  background: var(--carbon);
+  padding: 10px;
+  margin: 0;
+}
+.shot-fig img { width: 100%; height: auto; display: block; }
+.shot-fig figcaption {
+  border-top: var(--dash);
+  margin-top: 10px;
+  padding: 10px 4px 2px;
+  color: var(--steel);
+}
+.shot-fig + .shot-fig { margin-top: var(--gap); }
 .nav__links {
   display: flex;
   gap: 28px;
